@@ -4,7 +4,7 @@ import './index.css';
 // --- 이미지 파일 import ---
 import profileImg from './assets/profile.png';
 
-import slideImg1 from './assets/slide1.png';
+import slideImg1 from './assets/slide3.png';
 import slideImg2 from './assets/slide2.png'; 
 import slideImg3 from './assets/slide1.png'; 
 
@@ -42,7 +42,7 @@ const papers = [
     title: "Apparatus for Processing Sensor Metadata with Open Standard-based Ontology", 
     journal: "KR Patent (Pending)",
     year: "2024", 
-    link: "#" 
+    link: "#" // 링크 제거 로직에 의해 사용되지 않음
   },
   { 
     id: 3, 
@@ -54,35 +54,34 @@ const papers = [
   },
 ];
 
-// [수정됨] 이미지 역순 배치 (4->1) 및 설명 문구 다듬기
 const projects = [
   { 
     id: 1, 
-    title: "2025 Digital Columbus Project (Ongoing)", 
+    year: "2025 (Ongoing)",
+    title: "Digital Columbus Project 과제참가", 
     desc: "디지털 트윈을 위한 다중 도메인 온톨로지 구축 및 동적 지식 그래프(DKG) 기반 RAG, Neural-symbolic AI 개발",
-    img: projectImg4, // [역순] 가장 나중 번호 이미지를 최신 프로젝트에 할당
-    link: "#" 
+    img: projectImg4, 
   },
   { 
     id: 2, 
-    title: "2022 Digital Twin Testbed Establishment", 
+    year: "2022 - 2024",
+    title: "Digital Twin Testbed Establishment 과제참가", 
     desc: "부산 에코델타시티 관제 플랫폼을 위한 온톨로지(TBox/ABox) 모델링 및 실시간 추론 서비스 구현",
-    img: projectImg3, // [역순]
-    link: "#" 
+    img: projectImg3, 
   },
   { 
     id: 3, 
-    title: "2022 졸업작품대회 1위", 
+    year: "2022",
+    title: "졸업작품대회 1위", 
     desc: "멀티모달 데이터를 활용한 유튜브 영상 지식 추론 시스템 개발",
-    img: projectImg2, // [역순]
-    link: "#" 
+    img: projectImg2, 
   },
   { 
     id: 4, 
-    title: "2014 부산지방기능경기대회 2위", 
+    year: "2014",
+    title: "부산지방기능경기대회 2위", 
     desc: "리눅스(Quagga/Iptables) 및 윈도우 서버(AD/DNS) 기반 보안 네트워크망 구축 및 망 분리 설계",
-    img: projectImg1, // [역순] 1번 이미지를 가장 오래된 프로젝트에 할당
-    link: "#" 
+    img: projectImg1, 
   },
 ];
 
@@ -110,147 +109,193 @@ const Portfolio = () => {
       <style>
         {`
           .project-card .project-overlay {
-            transform: translateY(70%); /* 제목만 살짝 보이게 */
-            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), background 0.4s ease;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 50%, transparent 100%);
+            transition: background 0.3s ease;
           }
+
           .project-card:hover .project-overlay {
-            transform: translateY(0); /* 전체 올라옴 */
-            background: rgba(0, 0, 0, 0.96); /* [수정됨] 배경을 훨씬 더 어둡게 처리 (가독성 향상) */
+            background: rgba(0, 0, 0, 0.95);
           }
+
           .project-card .project-desc {
+            max-height: 0;
             opacity: 0;
-            transition: opacity 0.3s ease 0.1s;
-            margin-top: 12px;
+            overflow: hidden;
+            margin-top: 0;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            
             font-size: 0.9rem;
             line-height: 1.6;
             font-weight: 300;
-            color: #eee;
-            word-break: keep-all; /* 한글 단어 끊김 방지 */
+            color: #ccc;
+            word-break: keep-all; 
+            
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
           }
+
           .project-card:hover .project-desc {
+            max-height: 120px;
             opacity: 1;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.15);
           }
         `}
       </style>
 
-      {/* 사이드바 */}
-      <aside style={styles.sidebar}>
-        <div style={styles.profileWrapper}>
-          <div style={styles.avatarContainer}>
-            <img src={profile.avatar} alt="Profile" style={styles.avatar} />
-          </div>
-          <div style={styles.nameGroup}>
-            <h1 style={styles.nameKo}>{profile.nameKo}</h1>
-            <h2 style={styles.nameEn}>{profile.nameEn}</h2>
-            <p style={styles.role}>{profile.role}</p>
-          </div>
-          
-          <div style={styles.contactGroup}>
-            <div style={styles.emailContainer} onClick={handleCopyEmail}>
-              <span style={styles.emailText}>{profile.email}</span>
-              <span style={{
-                ...styles.copyBadge,
-                color: copyStatus === "Copied!" ? "#4caf50" : "#999",
-                fontWeight: copyStatus === "Copied!" ? "bold" : "normal",
-              }}>
-                {copyStatus}
-              </span>
-            </div>
-
-            <div style={styles.iconLinks}>
-              <a href={profile.github} target="_blank" rel="noreferrer" style={styles.iconLink}>GitHub</a>
-              <a href={profile.orcid} target="_blank" rel="noreferrer" style={styles.iconLink}>ORCID</a>
-            </div>
-          </div>
-        </div>
-        <div style={styles.copyright}>© 2026 {profile.nameEn}</div>
-      </aside>
-
-      {/* 메인 콘텐츠 */}
-      <main style={styles.mainContent}>
+      {/* 내부 콘텐츠 래퍼 */}
+      <div style={styles.contentWrapper}>
         
-        {/* 1. 슬라이드쇼 */}
-        <section style={styles.sectionSlide}>
-          {slideImages.map((src, index) => (
-            <div
-              key={index}
-              style={{
-                ...styles.slideImageWrapper,
-                opacity: index === currentSlide ? 1 : 0,
-                zIndex: index === currentSlide ? 1 : 0,
-              }}
-            >
-              <img src={src} alt={`Slide ${index}`} style={styles.slideImage} />
+        {/* 사이드바 */}
+        <aside style={styles.sidebar}>
+          <div style={styles.profileWrapper}>
+            <div style={styles.avatarContainer}>
+              <img src={profile.avatar} alt="Profile" style={styles.avatar} />
             </div>
-          ))}
-          <div style={styles.slideOverlay}>
-            <span style={styles.slideBadge}>Featured Works</span>
-          </div>
-        </section>
+            <div style={styles.nameGroup}>
+              <h1 style={styles.nameKo}>{profile.nameKo}</h1>
+              <h2 style={styles.nameEn}>{profile.nameEn}</h2>
+              <p style={styles.role}>{profile.role}</p>
+            </div>
+            
+            <div style={styles.contactGroup}>
+              <div style={styles.emailContainer} onClick={handleCopyEmail}>
+                <span style={styles.emailText}>{profile.email}</span>
+                <span style={{
+                  ...styles.copyBadge,
+                  color: copyStatus === "Copied!" ? "#4caf50" : "#999",
+                  fontWeight: copyStatus === "Copied!" ? "bold" : "normal",
+                }}>
+                  {copyStatus}
+                </span>
+              </div>
 
-        {/* 2. 논문 리스트 */}
-        <section style={styles.sectionPapers}>
-          <div style={styles.sectionHeader}>
-            <h3 style={styles.sectionTitle}>Publications & Patents</h3>
-            <span style={styles.line}></span>
+              <div style={styles.iconLinks}>
+                <a href={profile.github} target="_blank" rel="noreferrer" style={styles.iconLink}>GitHub</a>
+                <a href={profile.orcid} target="_blank" rel="noreferrer" style={styles.iconLink}>ORCID</a>
+              </div>
+            </div>
           </div>
-          <div style={styles.paperList}>
-            {papers.map((paper) => (
-              <a key={paper.id} href={paper.link} target="_blank" rel="noreferrer" style={styles.paperRow}>
-                <div style={styles.paperMeta}>
-                  <span style={styles.paperYear}>{paper.year}</span>
-                  <span style={styles.paperType}>{paper.type}</span>
-                </div>
-                <div style={styles.paperInfo}>
-                  <span style={styles.paperTitle}>{paper.title}</span>
-                  <span style={styles.paperJournal}>{paper.journal}</span>
-                </div>
-                <div style={styles.paperArrow}>↗</div>
-              </a>
-            ))}
-          </div>
-        </section>
+          <div style={styles.copyright}>© 2026 {profile.nameEn}</div>
+        </aside>
 
-        {/* 3. 프로젝트 */}
-        <section style={styles.sectionProjects}>
-           <div style={styles.sectionHeader}>
-            <h3 style={styles.sectionTitle}>Selected Projects</h3>
-            <span style={styles.line}></span>
-          </div>
-          <div style={styles.projectRow}>
-            {projects.map((project) => (
-              <a 
-                key={project.id} 
-                href={project.link} 
-                target="_blank" 
-                rel="noreferrer" 
-                style={styles.projectCard}
-                className="project-card"
+        {/* 메인 콘텐츠 */}
+        <main style={styles.mainContent}>
+          
+          {/* 1. 슬라이드쇼 */}
+          <section style={styles.sectionSlide}>
+            {slideImages.map((src, index) => (
+              <div
+                key={index}
+                style={{
+                  ...styles.slideImageWrapper,
+                  opacity: index === currentSlide ? 1 : 0,
+                  zIndex: index === currentSlide ? 1 : 0,
+                }}
               >
-                <img src={project.img} alt={project.title} style={styles.projectBg} />
-                
-                <div style={styles.projectOverlay} className="project-overlay">
-                  <span style={styles.projectTitle}>{project.title}</span>
-                  <span className="project-desc">{project.desc}</span>
-                </div>
-              </a>
+                <img src={src} alt={`Slide ${index}`} style={styles.slideImage} />
+              </div>
             ))}
-          </div>
-        </section>
+            {/* [수정됨] Featured Works 뱃지 제거 */}
+          </section>
 
-      </main>
+          {/* 2. 논문 리스트 */}
+          <section style={styles.sectionPapers}>
+            <div style={styles.sectionHeader}>
+              <h3 style={styles.sectionTitle}>Publications & Patents</h3>
+              <span style={styles.line}></span>
+            </div>
+            <div style={styles.paperList}>
+              {papers.map((paper) => {
+                // [수정됨] 특허(Patent) 여부 확인
+                const isPatent = paper.type === "Patent";
+                
+                // 특허면 div (클릭불가), 아니면 a (링크)
+                return isPatent ? (
+                  <div key={paper.id} style={{ ...styles.paperRow, cursor: 'default' }}>
+                    <div style={styles.paperMeta}>
+                      <span style={styles.paperYear}>{paper.year}</span>
+                      <span style={styles.paperType}>{paper.type}</span>
+                    </div>
+                    <div style={styles.paperInfo}>
+                      <span style={styles.paperTitle}>{paper.title}</span>
+                      <span style={styles.paperJournal}>{paper.journal}</span>
+                    </div>
+                    {/* 특허는 화살표 아이콘 제거 */}
+                  </div>
+                ) : (
+                  <a key={paper.id} href={paper.link} target="_blank" rel="noreferrer" style={styles.paperRow}>
+                    <div style={styles.paperMeta}>
+                      <span style={styles.paperYear}>{paper.year}</span>
+                      <span style={styles.paperType}>{paper.type}</span>
+                    </div>
+                    <div style={styles.paperInfo}>
+                      <span style={styles.paperTitle}>{paper.title}</span>
+                      <span style={styles.paperJournal}>{paper.journal}</span>
+                    </div>
+                    <div style={styles.paperArrow}>↗</div>
+                  </a>
+                );
+              })}
+            </div>
+          </section>
+
+          {/* 3. 프로젝트 */}
+          <section style={styles.sectionProjects}>
+            <div style={styles.sectionHeader}>
+              <h3 style={styles.sectionTitle}>Selected Projects</h3>
+              <span style={styles.line}></span>
+            </div>
+            <div style={styles.projectRow}>
+              {projects.map((project) => (
+                <div 
+                  key={project.id} 
+                  style={styles.projectCard}
+                  className="project-card"
+                >
+                  <img src={project.img} alt={project.title} style={styles.projectBg} />
+                  
+                  <div style={styles.projectOverlay} className="project-overlay">
+                    <span style={styles.projectYear}>{project.year}</span>
+                    <span style={styles.projectTitle}>{project.title}</span>
+                    <span className="project-desc">{project.desc}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+        </main>
+      </div>
     </div>
   );
 };
 
 const styles = {
+  // --- 바깥쪽 컨테이너 ---
   container: {
     display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     width: '100vw',
     height: '100vh',
     overflow: 'hidden',
-    backgroundColor: '#f4f6f8', 
+    backgroundColor: '#eef1f5',
     fontFamily: "'KoPubWorld Dotum', sans-serif",
+  },
+
+  // --- 중앙 집중형 콘텐츠 래퍼 ---
+  contentWrapper: {
+    display: 'flex',
+    width: '94%',
+    maxWidth: '1600px',
+    height: '92vh',
+    backgroundColor: '#f4f6f8',
+    borderRadius: '24px',
+    boxShadow: '0 20px 60px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.02)',
+    overflow: 'hidden',
   },
 
   // --- 사이드바 ---
@@ -265,7 +310,6 @@ const styles = {
     justifyContent: 'space-between',
     borderRight: '1px solid #e0e0e0',
     zIndex: 10,
-    boxShadow: '4px 0 15px rgba(0,0,0,0.02)',
   },
   profileWrapper: {
     display: 'flex',
@@ -310,7 +354,6 @@ const styles = {
     margin: 0,
     fontWeight: '300',
   },
-  
   contactGroup: {
     width: '100%',
     display: 'flex',
@@ -318,7 +361,6 @@ const styles = {
     gap: '20px',
     alignItems: 'center',
   },
-  
   emailContainer: {
     display: 'flex',
     justifyContent: 'center',
@@ -336,7 +378,6 @@ const styles = {
     fontSize: '0.75rem',
     transition: 'all 0.3s ease',
   },
-
   iconLinks: {
     display: 'flex',
     justifyContent: 'center',
@@ -387,6 +428,8 @@ const styles = {
     height: '100%',
     objectFit: 'cover',
   },
+  // slideOverlay 및 slideBadge 스타일은 사용하지 않으므로 삭제해도 되지만
+  // 혹시 모를 재사용을 위해 남겨두거나 삭제하셔도 무방합니다. (위 JSX에서는 사용 안 함)
   slideOverlay: {
     position: 'absolute',
     top: '20px',
@@ -512,9 +555,8 @@ const styles = {
     borderRadius: '12px',
     overflow: 'hidden',
     boxShadow: '0 4px 10px rgba(0,0,0,0.05)',
-    cursor: 'pointer',
+    cursor: 'default', 
     backgroundColor: '#fff', 
-    textDecoration: 'none', 
   },
   projectBg: {
     width: '100%',
@@ -525,17 +567,27 @@ const styles = {
   projectOverlay: {
     position: 'absolute',
     bottom: 0, left: 0, right: 0, top: 0, 
-    padding: '20px',
-    background: 'linear-gradient(to top, rgba(0,0,0,0.9), transparent)', 
+    padding: '25px', 
     color: '#fff',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-end', 
   },
+  projectYear: {
+    fontSize: '0.85rem',
+    fontWeight: '700',
+    color: '#4caf50', 
+    marginBottom: '6px',
+    letterSpacing: '0.5px',
+    textTransform: 'uppercase',
+  },
   projectTitle: {
-    fontSize: '1rem',
-    fontWeight: '500',
+    fontSize: '1.1rem',
+    fontWeight: '600',
     lineHeight: '1.3',
+    color: '#fff',
+    marginBottom: '0', 
+    wordBreak: 'keep-all', 
   }
 };
 
