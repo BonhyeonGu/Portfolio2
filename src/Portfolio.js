@@ -245,7 +245,7 @@ const Portfolio = () => {
           {/* 3. 프로젝트 */}
           <section style={styles.sectionProjects}>
             <div style={styles.sectionHeader}>
-              <h3 style={styles.sectionTitle}>Selected Projects</h3>
+              <h3 style={styles.sectionTitle}>Projects</h3>
               <span style={styles.line}></span>
             </div>
             <div style={styles.projectRow}>
