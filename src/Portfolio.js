@@ -4,7 +4,7 @@ import './index.css';
 // --- 이미지 파일 import ---
 import profileImg from './assets/profile.png';
 
-import slideImg1 from './assets/slide1.png';
+import slideImg1 from './assets/slide3.png';
 import slideImg2 from './assets/slide2.png'; 
 import slideImg3 from './assets/slide1.png'; 
 
@@ -142,7 +142,7 @@ const Portfolio = () => {
         </header>
 
         <section style={mobileStyles.section}>
-          <h3 style={mobileStyles.sectionTitle}>Publications</h3>
+          <h3 style={mobileStyles.sectionTitle}>Achievements</h3>
           <div style={mobileStyles.paperList}>
             {papers.map((paper) => {
               const isPatent = paper.type === "Patent";
@@ -208,32 +208,37 @@ const Portfolio = () => {
       <style>
         {`
           .project-card .project-overlay {
-            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 50%, transparent 100%);
+            background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.4) 60%, transparent 100%);
             transition: background 0.3s ease;
           }
           .project-card:hover .project-overlay {
             background: rgba(0, 0, 0, 0.95);
           }
           .project-card .project-desc {
-            max-height: 0;
+            /* [수정됨] max-height 대신 명시적인 height: 0 사용 */
+            height: 0;
             opacity: 0;
             overflow: hidden;
             margin-top: 0;
+            padding-top: 0; /* 패딩도 0에서 시작해야 부드러움 */
+            border-top: 1px solid transparent; /* 선이 갑자기 나타나는 것 방지 */
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            font-size: 0.85rem; /* 글자 크기 약간 축소 */
+            
+            font-size: 0.8rem; 
             line-height: 1.5;
             font-weight: 300;
-            color: #ccc;
+            color: #ddd;
             word-break: keep-all; 
             display: -webkit-box;
             -webkit-line-clamp: 3;
             -webkit-box-orient: vertical;
           }
           .project-card:hover .project-desc {
-            max-height: 120px;
+            /* [수정됨] 글자 길이에 상관없이 모든 카드가 정확히 65px 만큼 열림 */
+            height: 65px; 
             opacity: 1;
-            margin-top: 10px; /* 간격 축소 */
-            padding-top: 10px; /* 간격 축소 */
+            margin-top: 10px; 
+            padding-top: 10px; 
             border-top: 1px solid rgba(255,255,255,0.15);
           }
         `}
@@ -288,7 +293,7 @@ const Portfolio = () => {
 
           <section style={styles.sectionPapers}>
             <div style={styles.sectionHeader}>
-              <h3 style={styles.sectionTitle}>Publications & Patents</h3>
+              <h3 style={styles.sectionTitle}>Achievements</h3>
               <span style={styles.line}></span>
             </div>
             <div style={styles.paperList}>
@@ -352,7 +357,7 @@ const Portfolio = () => {
 
 const mobileStyles = {
   container: {
-    padding: '20px',
+    padding: '15px',
     backgroundColor: '#f4f6f8',
     height: '100vh',        
     overflowY: 'auto',      
@@ -360,7 +365,7 @@ const mobileStyles = {
     fontFamily: "'KoPubWorld Dotum', sans-serif",
     display: 'flex',
     flexDirection: 'column',
-    gap: '30px',
+    gap: '25px',
     boxSizing: 'border-box',
   },
   profileSection: {
@@ -389,7 +394,7 @@ const mobileStyles = {
   linkItem: { textDecoration: 'none', color: '#666' },
 
   section: { display: 'flex', flexDirection: 'column', gap: '15px', flexShrink: 0 },
-  sectionTitle: { fontSize: '1.2rem', fontWeight: '600', color: '#333', margin: '0 0 5px 0', borderLeft: '4px solid #4caf50', paddingLeft: '10px' },
+  sectionTitle: { fontSize: '1.0rem', fontWeight: '600', color: '#333', margin: '0 0 5px 0', borderLeft: '4px solid #4caf50', paddingLeft: '10px' },
   
   paperList: { display: 'flex', flexDirection: 'column', gap: '10px' },
   paperCard: {
@@ -399,8 +404,8 @@ const mobileStyles = {
   paperHeader: { display: 'flex', justifyContent: 'space-between', marginBottom: '8px', fontSize: '0.75rem' },
   paperType: { fontWeight: 'bold', color: '#4caf50' },
   paperYear: { color: '#888' },
-  paperTitle: { fontSize: '0.95rem', fontWeight: '500', marginBottom: '5px', lineHeight: '1.4', wordBreak: 'keep-all' },
-  paperJournal: { fontSize: '0.8rem', color: '#666' },
+  paperTitle: { fontSize: '0.85rem', fontWeight: '500', marginBottom: '5px', lineHeight: '1.4', wordBreak: 'keep-all' },
+  paperJournal: { fontSize: '0.75rem', color: '#666' },
 
   projectList: { display: 'flex', flexDirection: 'column', gap: '20px' },
   projectCard: {
@@ -415,10 +420,10 @@ const mobileStyles = {
     display: 'flex', flexDirection: 'column', justifyContent: 'flex-end',
     padding: '15px'
   },
-  projectYear: { color: '#4caf50', fontSize: '0.75rem', fontWeight: 'bold', marginBottom: '4px' },
-  projectTitle: { color: '#fff', fontSize: '1rem', fontWeight: '600', wordBreak: 'keep-all' },
+  projectYear: { color: '#4caf50', fontSize: '0.7rem', fontWeight: 'bold', marginBottom: '4px' },
+  projectTitle: { color: '#fff', fontSize: '0.9rem', fontWeight: '600', wordBreak: 'keep-all' },
   projectDescBox: {
-    padding: '15px', fontSize: '0.85rem', color: '#555', lineHeight: '1.5',
+    padding: '15px', fontSize: '0.8rem', color: '#555', lineHeight: '1.5',
     borderTop: '1px solid #eee', wordBreak: 'keep-all'
   },
   footer: { textAlign: 'center', color: '#aaa', fontSize: '0.8rem', padding: '20px 0', flexShrink: 0 }
@@ -437,9 +442,9 @@ const styles = {
   },
   contentWrapper: {
     display: 'flex',
-    width: '94%',
+    width: '96%',
     maxWidth: '1600px',
-    height: '92vh',
+    height: '96vh',
     backgroundColor: '#f4f6f8',
     borderRadius: '24px',
     boxShadow: '0 20px 60px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.02)',
@@ -490,37 +495,33 @@ const styles = {
   iconLink: { color: '#666', textDecoration: 'none', fontSize: '0.9rem', borderBottom: '1px solid transparent', transition: 'all 0.2s' },
   copyright: { fontSize: '0.75rem', color: '#aaa', textAlign: 'center' },
   
-  // [수정됨] 메인 콘텐츠 여백 및 갭 축소
-  mainContent: { flex: 1, display: 'flex', flexDirection: 'column', padding: '25px', gap: '15px', boxSizing: 'border-box' },
+  mainContent: { flex: 1, display: 'flex', flexDirection: 'column', padding: '20px', gap: '15px', boxSizing: 'border-box', minHeight: 0 },
   
-  // [수정됨] 슬라이드 높이 비중 축소 (1.6 -> 1.2), 최소 높이 축소 (220 -> 180)
-  sectionSlide: { flex: '1.2 1 0', position: 'relative', borderRadius: '16px', overflow: 'hidden', backgroundColor: '#000', boxShadow: '0 4px 20px rgba(0,0,0,0.05)', minHeight: '180px' },
+  sectionSlide: { flex: '1.0 1 0', position: 'relative', borderRadius: '16px', overflow: 'hidden', backgroundColor: '#000', boxShadow: '0 4px 20px rgba(0,0,0,0.05)', minHeight: '160px' },
   slideImageWrapper: { position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', transition: 'opacity 1s ease-in-out' },
   slideImage: { width: '100%', height: '100%', objectFit: 'cover' },
   
-  // [수정됨] 논문 섹션 패딩 축소
-  sectionPapers: { flex: '0.8 1 0', backgroundColor: '#fff', borderRadius: '16px', padding: '15px 25px', boxShadow: '0 4px 15px rgba(0,0,0,0.03)', display: 'flex', flexDirection: 'column', minHeight: '140px' },
-  sectionHeader: { display: 'flex', alignItems: 'center', marginBottom: '15px', gap: '15px' },
-  sectionTitle: { fontSize: '1.1rem', fontWeight: '500', margin: 0, color: '#333', whiteSpace: 'nowrap' },
+  sectionPapers: { flex: '1.0 1 0', backgroundColor: '#fff', borderRadius: '16px', padding: '20px', boxShadow: '0 4px 15px rgba(0,0,0,0.03)', display: 'flex', flexDirection: 'column', minHeight: '170px' },
+  sectionHeader: { display: 'flex', alignItems: 'center', marginBottom: '12px', gap: '15px' },
+  sectionTitle: { fontSize: '1rem', fontWeight: '600', margin: 0, color: '#333', whiteSpace: 'nowrap' },
   line: { flex: 1, height: '1px', backgroundColor: '#eee' },
-  paperList: { display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', height: '100%' },
-  paperRow: { display: 'flex', alignItems: 'center', textDecoration: 'none', padding: '10px 0', borderRadius: '8px', color: '#333', gap: '0' },
-  paperMeta: { display: 'flex', flexDirection: 'column', width: '80px', minWidth: '80px', textAlign: 'center', borderRight: '2px solid #eee', paddingRight: '15px', marginRight: '20px', flexShrink: 0 },
-  paperYear: { fontWeight: '500', fontSize: '0.95rem', color: '#222' },
-  paperType: { fontSize: '0.7rem', color: '#888', textTransform: 'uppercase', marginTop: '2px' },
+  paperList: { display: 'flex', flexDirection: 'column', justifyContent: 'space-between', flex: 1 },
+  paperRow: { display: 'flex', alignItems: 'center', textDecoration: 'none', padding: '4px 0', borderRadius: '8px', color: '#333', gap: '0' },
+  paperMeta: { display: 'flex', flexDirection: 'column', width: '70px', minWidth: '70px', textAlign: 'center', borderRight: '2px solid #eee', paddingRight: '15px', marginRight: '15px', flexShrink: 0 },
+  paperYear: { fontWeight: '500', fontSize: '0.85rem', color: '#222' },
+  paperType: { fontSize: '0.65rem', color: '#888', textTransform: 'uppercase', marginTop: '2px' },
   paperInfo: { display: 'flex', flexDirection: 'column', flex: 1, justifyContent: 'center' },
-  paperTitle: { fontSize: '0.95rem', fontWeight: '500', marginBottom: '4px', color: '#111', whiteSpace: 'normal', wordBreak: 'keep-all', lineHeight: '1.4' },
-  paperJournal: { fontSize: '0.8rem', color: '#777', fontWeight: '300', whiteSpace: 'normal' },
-  paperArrow: { fontSize: '1rem', color: '#ddd', marginLeft: '10px' },
+  paperTitle: { fontSize: '0.85rem', fontWeight: '500', marginBottom: '2px', color: '#111', whiteSpace: 'normal', wordBreak: 'keep-all', lineHeight: '1.4' },
+  paperJournal: { fontSize: '0.75rem', color: '#777', fontWeight: '300', whiteSpace: 'normal' },
+  paperArrow: { fontSize: '0.9rem', color: '#ddd', marginLeft: '10px' },
   
-  // [수정됨] 프로젝트 섹션 flex 비율 조정 (하단 잘림 방지)
-  sectionProjects: { flex: '1.0 1 0', display: 'flex', flexDirection: 'column', minHeight: '140px' },
-  projectRow: { display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '20px', height: '100%' },
-  projectCard: { position: 'relative', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 4px 10px rgba(0,0,0,0.05)', cursor: 'default', backgroundColor: '#fff' },
+  sectionProjects: { flex: '1.2 1 0', backgroundColor: '#fff', borderRadius: '16px', padding: '20px', boxShadow: '0 4px 15px rgba(0,0,0,0.03)', display: 'flex', flexDirection: 'column', minHeight: '160px', overflow: 'hidden' },
+  projectRow: { display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '15px', flex: 1, minHeight: 0 },
+  projectCard: { position: 'relative', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 2px 8px rgba(0,0,0,0.05)', cursor: 'default', backgroundColor: '#000', height: '100%' },
   projectBg: { width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.4s' },
-  projectOverlay: { position: 'absolute', bottom: 0, left: 0, right: 0, top: 0, padding: '20px', color: '#fff', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' },
-  projectYear: { fontSize: '0.85rem', fontWeight: '700', color: '#4caf50', marginBottom: '6px', letterSpacing: '0.5px', textTransform: 'uppercase' },
-  projectTitle: { fontSize: '1.1rem', fontWeight: '600', lineHeight: '1.3', color: '#fff', marginBottom: '0', wordBreak: 'keep-all' }
+  projectOverlay: { position: 'absolute', bottom: 0, left: 0, right: 0, top: 0, padding: '15px', color: '#fff', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' },
+  projectYear: { fontSize: '0.75rem', fontWeight: '700', color: '#4caf50', marginBottom: '4px', letterSpacing: '0.5px', textTransform: 'uppercase' },
+  projectTitle: { fontSize: '0.9rem', fontWeight: '600', lineHeight: '1.3', color: '#fff', marginBottom: '0', wordBreak: 'keep-all' }
 };
 
 export default Portfolio;
