@@ -355,8 +355,8 @@ const Portfolio = () => {
 
 const mobileStyles = {
   container: {
-    // [수정됨] 상단 40px, 좌우 15px, 하단 60px 패딩 부여하여 브라우저 UI에 가려지는 것 방지
-    padding: '40px 15px 60px 15px',
+    // [수정됨] 하단 마진(padding-bottom)을 60px에서 100px로 넉넉하게 확장
+    padding: '40px 15px 100px 15px',
     backgroundColor: '#f4f6f8',
     height: '100vh',        
     overflowY: 'auto',      
@@ -496,25 +496,25 @@ const styles = {
   
   mainContent: { flex: 1, display: 'flex', flexDirection: 'column', padding: '20px', gap: '15px', boxSizing: 'border-box', minHeight: 0 },
   
-  sectionSlide: { flex: '1.0 1 0', position: 'relative', borderRadius: '16px', overflow: 'hidden', backgroundColor: '#000', boxShadow: '0 4px 20px rgba(0,0,0,0.05)', minHeight: '160px' },
+  sectionSlide: { flex: '1 1 0', position: 'relative', borderRadius: '16px', overflow: 'hidden', backgroundColor: '#000', boxShadow: '0 4px 20px rgba(0,0,0,0.05)', minHeight: '160px' },
   slideImageWrapper: { position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', transition: 'opacity 1s ease-in-out' },
   slideImage: { width: '100%', height: '100%', objectFit: 'cover' },
   
-  sectionPapers: { flex: '1.0 1 0', backgroundColor: '#fff', borderRadius: '16px', padding: '20px', boxShadow: '0 4px 15px rgba(0,0,0,0.03)', display: 'flex', flexDirection: 'column', minHeight: '170px' },
-  sectionHeader: { display: 'flex', alignItems: 'center', marginBottom: '12px', gap: '15px' },
-  sectionTitle: { fontSize: '1rem', fontWeight: '600', margin: 0, color: '#333', whiteSpace: 'nowrap' },
+  sectionPapers: { flex: '0 0 auto', backgroundColor: '#fff', borderRadius: '16px', padding: '25px', boxShadow: '0 4px 15px rgba(0,0,0,0.03)', display: 'flex', flexDirection: 'column' },
+  sectionHeader: { display: 'flex', alignItems: 'center', marginBottom: '15px', gap: '15px' },
+  sectionTitle: { fontSize: '1.05rem', fontWeight: '600', margin: 0, color: '#333', whiteSpace: 'nowrap' },
   line: { flex: 1, height: '1px', backgroundColor: '#eee' },
-  paperList: { display: 'flex', flexDirection: 'column', justifyContent: 'space-between', flex: 1 },
+  paperList: { display: 'flex', flexDirection: 'column', gap: '12px' }, 
   paperRow: { display: 'flex', alignItems: 'center', textDecoration: 'none', padding: '4px 0', borderRadius: '8px', color: '#333', gap: '0' },
   paperMeta: { display: 'flex', flexDirection: 'column', width: '70px', minWidth: '70px', textAlign: 'center', borderRight: '2px solid #eee', paddingRight: '15px', marginRight: '15px', flexShrink: 0 },
-  paperYear: { fontWeight: '500', fontSize: '0.85rem', color: '#222' },
+  paperYear: { fontWeight: '500', fontSize: '0.9rem', color: '#222' },
   paperType: { fontSize: '0.65rem', color: '#888', textTransform: 'uppercase', marginTop: '2px' },
   paperInfo: { display: 'flex', flexDirection: 'column', flex: 1, justifyContent: 'center' },
-  paperTitle: { fontSize: '0.85rem', fontWeight: '500', marginBottom: '2px', color: '#111', whiteSpace: 'normal', wordBreak: 'keep-all', lineHeight: '1.4' },
-  paperJournal: { fontSize: '0.75rem', color: '#777', fontWeight: '300', whiteSpace: 'normal' },
+  paperTitle: { fontSize: '0.9rem', fontWeight: '500', marginBottom: '4px', color: '#111', whiteSpace: 'normal', wordBreak: 'keep-all', lineHeight: '1.4' },
+  paperJournal: { fontSize: '0.8rem', color: '#777', fontWeight: '300', whiteSpace: 'normal' },
   paperArrow: { fontSize: '0.9rem', color: '#ddd', marginLeft: '10px' },
   
-  sectionProjects: { flex: '0.9 1 0', backgroundColor: '#fff', borderRadius: '16px', padding: '20px', boxShadow: '0 4px 15px rgba(0,0,0,0.03)', display: 'flex', flexDirection: 'column', minHeight: '150px', overflow: 'hidden' },
+  sectionProjects: { flex: '0 1 200px', minHeight: '160px', backgroundColor: '#fff', borderRadius: '16px', padding: '25px', boxShadow: '0 4px 15px rgba(0,0,0,0.03)', display: 'flex', flexDirection: 'column', overflow: 'hidden' },
   projectRow: { display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '15px', flex: 1, minHeight: 0 },
   projectCard: { position: 'relative', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 2px 8px rgba(0,0,0,0.05)', cursor: 'default', backgroundColor: '#000', height: '100%' },
   projectBg: { width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.4s' },
