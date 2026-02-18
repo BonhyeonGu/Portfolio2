@@ -66,7 +66,7 @@ const projects = [
     id: 2, 
     year: "2022 - 2024",
     title: "과제: DT Testbed Establishment", 
-    desc: "부산 에코델타시 관제 플랫폼을 위한 온톨로지(TBox/ABox) 모델링 및 실시간 추론 서비스 구현",
+    desc: "부산 에코델타시티 관제 플랫폼을 위한 온톨로지(TBox/ABox) 모델링 및 실시간 추론 서비스 구현",
     img: projectImg3, 
   },
   { 
@@ -355,7 +355,8 @@ const Portfolio = () => {
 
 const mobileStyles = {
   container: {
-    padding: '15px',
+    // [수정됨] 상단 40px, 좌우 15px, 하단 60px 패딩 부여하여 브라우저 UI에 가려지는 것 방지
+    padding: '40px 15px 60px 15px',
     backgroundColor: '#f4f6f8',
     height: '100vh',        
     overflowY: 'auto',      
@@ -419,13 +420,12 @@ const mobileStyles = {
     padding: '15px'
   },
   projectYear: { color: '#4caf50', fontSize: '0.7rem', fontWeight: 'bold', marginBottom: '4px' },
-  // [수정됨] 모바일 프로젝트 타이틀 폰트 크기 축소 (0.9rem -> 0.85rem)
   projectTitle: { color: '#fff', fontSize: '0.85rem', fontWeight: '600', wordBreak: 'keep-all' },
   projectDescBox: {
     padding: '15px', fontSize: '0.8rem', color: '#555', lineHeight: '1.5',
     borderTop: '1px solid #eee', wordBreak: 'keep-all'
   },
-  footer: { textAlign: 'center', color: '#aaa', fontSize: '0.8rem', padding: '20px 0', flexShrink: 0 }
+  footer: { textAlign: 'center', color: '#aaa', fontSize: '0.8rem', padding: '10px 0', flexShrink: 0 }
 };
 
 const styles = {
@@ -518,9 +518,9 @@ const styles = {
   projectRow: { display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '15px', flex: 1, minHeight: 0 },
   projectCard: { position: 'relative', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 2px 8px rgba(0,0,0,0.05)', cursor: 'default', backgroundColor: '#000', height: '100%' },
   projectBg: { width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.4s' },
+  
   projectOverlay: { position: 'absolute', bottom: 0, left: 0, right: 0, top: 0, padding: '12px 15px', color: '#fff', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' },
   projectYear: { fontSize: '0.7rem', fontWeight: '700', color: '#4caf50', marginBottom: '4px', letterSpacing: '0.5px', textTransform: 'uppercase' },
-  // [수정됨] PC 프로젝트 타이틀 폰트 크기 한 단계 축소 (0.9rem -> 0.85rem)
   projectTitle: { fontSize: '0.85rem', fontWeight: '600', lineHeight: '1.3', color: '#fff', marginBottom: '0', wordBreak: 'keep-all' }
 };
 
