@@ -66,7 +66,7 @@ const projects = [
     id: 2, 
     year: "2022 - 2024",
     title: "과제: DT Testbed Establishment", 
-    desc: "부산 에코델타시티 관제 플랫폼을 위한 온톨로지(TBox/ABox) 모델링 및 실시간 추론 서비스 구현",
+    desc: "부산 에코델타시 관제 플랫폼을 위한 온톨로지(TBox/ABox) 모델링 및 실시간 추론 서비스 구현",
     img: projectImg3, 
   },
   { 
@@ -215,17 +215,16 @@ const Portfolio = () => {
             background: rgba(0, 0, 0, 0.95);
           }
           .project-card .project-desc {
-            /* [수정됨] max-height 대신 명시적인 height: 0 사용 */
             height: 0;
             opacity: 0;
             overflow: hidden;
             margin-top: 0;
-            padding-top: 0; /* 패딩도 0에서 시작해야 부드러움 */
-            border-top: 1px solid transparent; /* 선이 갑자기 나타나는 것 방지 */
+            padding-top: 0;
+            border-top: 1px solid transparent; 
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             
-            font-size: 0.8rem; 
-            line-height: 1.5;
+            font-size: 0.75rem; 
+            line-height: 1.4;
             font-weight: 300;
             color: #ddd;
             word-break: keep-all; 
@@ -234,11 +233,10 @@ const Portfolio = () => {
             -webkit-box-orient: vertical;
           }
           .project-card:hover .project-desc {
-            /* [수정됨] 글자 길이에 상관없이 모든 카드가 정확히 65px 만큼 열림 */
-            height: 65px; 
+            height: 50px; 
             opacity: 1;
-            margin-top: 10px; 
-            padding-top: 10px; 
+            margin-top: 8px; 
+            padding-top: 8px; 
             border-top: 1px solid rgba(255,255,255,0.15);
           }
         `}
@@ -421,7 +419,8 @@ const mobileStyles = {
     padding: '15px'
   },
   projectYear: { color: '#4caf50', fontSize: '0.7rem', fontWeight: 'bold', marginBottom: '4px' },
-  projectTitle: { color: '#fff', fontSize: '0.9rem', fontWeight: '600', wordBreak: 'keep-all' },
+  // [수정됨] 모바일 프로젝트 타이틀 폰트 크기 축소 (0.9rem -> 0.85rem)
+  projectTitle: { color: '#fff', fontSize: '0.85rem', fontWeight: '600', wordBreak: 'keep-all' },
   projectDescBox: {
     padding: '15px', fontSize: '0.8rem', color: '#555', lineHeight: '1.5',
     borderTop: '1px solid #eee', wordBreak: 'keep-all'
@@ -515,13 +514,14 @@ const styles = {
   paperJournal: { fontSize: '0.75rem', color: '#777', fontWeight: '300', whiteSpace: 'normal' },
   paperArrow: { fontSize: '0.9rem', color: '#ddd', marginLeft: '10px' },
   
-  sectionProjects: { flex: '1.2 1 0', backgroundColor: '#fff', borderRadius: '16px', padding: '20px', boxShadow: '0 4px 15px rgba(0,0,0,0.03)', display: 'flex', flexDirection: 'column', minHeight: '160px', overflow: 'hidden' },
+  sectionProjects: { flex: '0.9 1 0', backgroundColor: '#fff', borderRadius: '16px', padding: '20px', boxShadow: '0 4px 15px rgba(0,0,0,0.03)', display: 'flex', flexDirection: 'column', minHeight: '150px', overflow: 'hidden' },
   projectRow: { display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '15px', flex: 1, minHeight: 0 },
   projectCard: { position: 'relative', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 2px 8px rgba(0,0,0,0.05)', cursor: 'default', backgroundColor: '#000', height: '100%' },
   projectBg: { width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.4s' },
-  projectOverlay: { position: 'absolute', bottom: 0, left: 0, right: 0, top: 0, padding: '15px', color: '#fff', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' },
-  projectYear: { fontSize: '0.75rem', fontWeight: '700', color: '#4caf50', marginBottom: '4px', letterSpacing: '0.5px', textTransform: 'uppercase' },
-  projectTitle: { fontSize: '0.9rem', fontWeight: '600', lineHeight: '1.3', color: '#fff', marginBottom: '0', wordBreak: 'keep-all' }
+  projectOverlay: { position: 'absolute', bottom: 0, left: 0, right: 0, top: 0, padding: '12px 15px', color: '#fff', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' },
+  projectYear: { fontSize: '0.7rem', fontWeight: '700', color: '#4caf50', marginBottom: '4px', letterSpacing: '0.5px', textTransform: 'uppercase' },
+  // [수정됨] PC 프로젝트 타이틀 폰트 크기 한 단계 축소 (0.9rem -> 0.85rem)
+  projectTitle: { fontSize: '0.85rem', fontWeight: '600', lineHeight: '1.3', color: '#fff', marginBottom: '0', wordBreak: 'keep-all' }
 };
 
 export default Portfolio;
