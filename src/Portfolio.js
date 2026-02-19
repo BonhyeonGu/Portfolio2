@@ -72,14 +72,14 @@ const projects = [
   { 
     id: 3, 
     year: "2022",
-    title: "졸업작품 1위", 
+    title: "졸업작품 (3인 팀) 1위", 
     desc: "멀티모달 데이터를 활용한 유튜브 영상 지식 추론 시스템 개발",
     img: projectImg2, 
   },
   { 
     id: 4, 
     year: "2014",
-    title: "세계 기능대회 부산 정보통신2위", 
+    title: "세계 기능대회 부산지방 정보통신2위", 
     desc: "리눅스(Quagga/Iptables) 및 윈도우 서버(AD/DNS) 기반 보안 네트워크망 구축 및 망 분리 설계",
     img: projectImg1, 
   },
